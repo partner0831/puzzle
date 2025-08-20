@@ -1,0 +1,21 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjEyMzQ1LCJ0eXBlIjoiY3VzdG9keSIsImtleSI6IjB4MTIzNDU2Nzg5MGFiY2RlZjEyMzQ1Njc4OTBhYmNkZWYxMjM0NTY3OCJ9",
+    "payload": "eyJkb21haW4iOiJ2MC1mYXJjYXN0ZXItcHJldmlldy1pc3N1ZS52ZXJjZWwuYXBwIn0",
+    "signature": "MHg5ODc2NTQzMjEwYWJjZGVmMTIzNDU2Nzg5MGFiY2RlZjEyMzQ1Njc4OTBhYmNkZWYxMjM0NTY3ODkwYWJjZGVm"
+  },
+  "frame": {
+    "name": "Pizza Party Game",
+    "version": "1.0.0",
+    "iconUrl": "https://v0-farcaster-preview-issue.vercel.app/pizza-party-background.png",
+    "splashImageUrl": "https://v0-farcaster-preview-issue.vercel.app/pizza-party-background.png",
+    "splashBackgroundColor": "#1a1a2e",
+    "homeUrl": "https://v0-farcaster-preview-issue.vercel.app"
+  },
+  "metadata": {
+    "name": "Pizza Party Game",
+    "description": "Join the ultimate pizza party! Collect ingredients, build your perfect pizza, and compete with friends in this delicious blockchain game.",
+    "image": "https://v0-farcaster-preview-issue.vercel.app/pizza-party-background.png",
+    "url": "https://v0-farcaster-preview-issue.vercel.app"
+  }
+}

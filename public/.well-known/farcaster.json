@@ -1,0 +1,44 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjEyMzQ1LCJ0eXBlIjoiY3VzdG9keSIsImtleSI6IjB4MTIzNDU2Nzg5MGFiY2RlZjEyMzQ1Njc4OTBhYmNkZWYxMjM0NTY3OCJ9",
+    "payload": "eyJkb21haW4iOiJ2MC1mYXJjYXN0ZXItcHJldmlldy1pc3N1ZS52ZXJjZWwuYXBwIn0",
+    "signature": "MHg5ODc2NTQzMjEwYWJjZGVmMTIzNDU2Nzg5MGFiY2RlZjEyMzQ1Njc4OTBhYmNkZWYxMjM0NTY3ODkwYWJjZGVm"
+  },
+  "frame": {
+    "name": "Pizza Party",
+    "version": "1",
+    "iconUrl": "https://u.cubeupload.com/vmfcoin/E49A4767F2074D3C9CE7.png",
+    "splashImageUrl": "https://u.cubeupload.com/vmfcoin/PizzaPartyHomepageLa.png",
+    "splashBackgroundColor": "#b01c17",
+    "homeUrl": "https://v0-farcaster-preview-issue.vercel.app",
+    "subtitle": "Play daily, win big — the cheesiest game on Base!",
+    "tagline": "The Tastiest Way to Chase Jackpots.",
+    "primaryCategory": "games",
+    "tags": [
+      "games",
+      "crypto",
+      "entertainment",
+      "jackpot",
+      "lottery",
+      "pizza",
+      "community",
+      "fun",
+      "rewards",
+      "casual",
+      "decentralized",
+      "daily"
+    ],
+    "screenshotUrls": [
+      "https://u.cubeupload.com/vmfcoin/PizzaPartyHomepageLa.png",
+      "https://u.cubeupload.com/vmfcoin/PizzaPartyGamePageLa.png",
+      "https://u.cubeupload.com/vmfcoin/ScreenShot20250813at.png"
+    ],
+    "heroImageUrl": "https://u.cubeupload.com/vmfcoin/PizzaPartyHomepageLa.png"
+  },
+  "metadata": {
+    "name": "Pizza Party",
+    "description": "Get a slice of the action with Pizza Party, a sizzling decentralized jackpot game on Base! Toss in just $1 VMF for a chance to dough-minate daily and weekly prizes. With crust-worthy on-chain randomness, instant payouts, and cheesy topping rewards, it's a fair and fun fest for the whole pizza posse. Join the saucy competition, share the pie, and celebrate your pizza-powered wins every day!",
+    "image": "https://u.cubeupload.com/vmfcoin/PizzaPartyHomepageLa.png",
+    "url": "https://v0-farcaster-preview-issue.vercel.app"
+  }
+}
