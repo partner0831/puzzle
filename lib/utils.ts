@@ -1,6 +1,7 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+// Placeholder for utils module
+// TODO: Implement real utility functions as needed
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+// Simple classNames utility (cn)
+export function cn(...args: any[]): string {
+  return args.filter(Boolean).join(' ')
 }

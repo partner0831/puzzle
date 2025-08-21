@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="24" height="24" rx="12" fill="#3375BB"/>
+  <!-- Shield background -->
+  <path d="M12 3L6 6V11C6 15.5 8.5 19.5 12 21C15.5 19.5 18 15.5 18 11V6L12 3Z" fill="#3375BB"/>
+  <!-- Shield outline -->
+  <path d="M12 3L6 6V11C6 15.5 8.5 19.5 12 21C15.5 19.5 18 15.5 18 11V6L12 3Z" stroke="#C0C0C0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Red section (top-left) -->
+  <path d="M12 3L6 6V11L12 8V3Z" fill="#FF4444"/>
+  <!-- Silver section (bottom-right) -->
+  <path d="M12 8L18 11V11C18 15.5 15.5 19.5 12 21V8Z" fill="#C0C0C0"/>
+  <!-- Shield cross -->
+  <path d="M12 8L10 10L12 12L14 10L12 8Z" fill="white"/>
+  <path d="M12 12L10 14L12 16L14 14L12 12Z" fill="white"/>
+  <!-- Shield border highlight -->
+  <path d="M12 3L6 6V11C6 15.5 8.5 19.5 12 21C15.5 19.5 18 15.5 18 11V6L12 3Z" fill="none" stroke="white" stroke-width="0.5" stroke-opacity="0.3"/>
+</svg> 
