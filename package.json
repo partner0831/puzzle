@@ -9,6 +9,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@chainlink/contracts": "^0.8.0",
+    "@rainbow-me/rainbowkit": "^2.0.0",
     "@farcaster/miniapp-sdk": "latest",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "1.2.2",
