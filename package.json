@@ -1,6 +1,6 @@
 {
-  "name": "pizza-party",
-  "version": "0.1.4",
+  "name": "Pizza",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@chainlink/contracts": "^0.8.0",
-    "@rainbow-me/rainbowkit": "^2.0.0",
     "@farcaster/miniapp-sdk": "latest",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "1.2.2",
@@ -59,14 +58,18 @@
     "recharts": "2.15.4",
     "sonner": "^1.7.4",
     "tailwind-merge": "^2.5.5",
-    "pg": "^8.16.3",
     "tailwindcss-animate": "^1.0.7",
-    "wagmi": "^2.5.7",
-    "pino-pretty": "^13.1.1",
+    "vaul": "^0.9.9",
     "zod": "3.25.67",
+    "@types/pg": "^8.15.5",
+    "@vercel/analytics": "^1.1.1",
     "dotenv": "^17.2.1",
     "ethers": "^6.15.0",
-    "framer-motion": "^10.16.16"
+    "framer-motion": "^10.16.16",
+    "pg": "^8.16.3",
+    "pino-pretty": "^13.1.1",
+    "viem": "^2.7.9",
+    "wagmi": "^2.5.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.9",

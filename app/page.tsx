@@ -22,17 +22,7 @@ import {
   initMobileOptimizations,
 } from "@/lib/wallet-config";
 import { WalletStatus } from "@/components/WalletStatus";
-
-declare global {
-  interface Window {
-    parent: Window;
-    farcasterSdk?: {
-      actions: {
-        ready: (options?: { disableNativeGestures?: boolean }) => Promise<void>;
-      };
-    };
-  }
-}
+import { sdk } from "@farcaster/miniapp-sdk";
 
 export default function HomePage() {
   const customFontStyle = {
@@ -60,85 +50,61 @@ export default function HomePage() {
     setError,
   } = useWallet();
 
-  // // Initialize mobile optimizations and device detection
-  // useEffect(() => {
-  //   initMobileOptimizations();
-
-  //   setDeviceInfo({
-  //     isMobile: isMobile(),
-  //     isIOS: isIOS(),
-  //     isAndroid: isAndroid(),
-  //     isFarcaster: isFarcaster(),
-  //   });
-
-  //   if (typeof window !== "undefined") {
-  //     window.scrollTo(0, 0);
-  //   }
-  // }, []);
+  // Initialize mobile optimizations and device detection
   useEffect(() => {
-    const checkDevice = () => {
-      const userAgent = navigator.userAgent.toLowerCase();
-      const isMobileDevice =
-        /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
-          userAgent
-        );
-      const isIOSDevice = /ipad|iphone|ipod/.test(userAgent);
-      const isAndroidDevice = /android/.test(userAgent);
-      const isFarcasterEnv =
-        window.parent !== window || userAgent.includes("farcaster");
+    initMobileOptimizations();
 
-      setDeviceInfo({
-        isMobile: isMobileDevice,
-        isIOS: isIOSDevice,
-        isAndroid: isAndroidDevice,
-        isFarcaster: isFarcasterEnv,
-      });
-    };
+    setDeviceInfo({
+      isMobile: isMobile(),
+      isIOS: isIOS(),
+      isAndroid: isAndroid(),
+      isFarcaster: isFarcaster(),
+    });
 
-    checkDevice();
     if (typeof window !== "undefined") {
       window.scrollTo(0, 0);
     }
   }, []);
 
-  // Farcaster Mini App SDK: Remove splash screen when ready
+  // Call Farcaster Mini App ready as early as possible so splash screen hides globally
   useEffect(() => {
-    if (!deviceInfo.isFarcaster) return;
-
-    const initializeFarcasterSDK = async () => {
+    // Only run client side and within Farcaster environment (iframe / user agent / hostname checks)
+    if (!isFarcaster()) return;
+    let cancelled = false;
+    (async () => {
       try {
-        console.log("[v0] About to call sdk.actions.ready()");
-
-        // Try multiple methods to call ready
-        if (window.farcasterSdk?.actions?.ready) {
-          await window.farcasterSdk.actions.ready();
-          console.log("[v0] ✅ Called window.farcasterSdk.actions.ready()");
-        }
-
-        // Try dynamic import
-        try {
-          const { sdk } = await import("@farcaster/miniapp-sdk");
-          if (sdk?.actions?.ready) {
-            await sdk.actions.ready();
-            console.log("[v0] ✅ Called imported sdk.actions.ready()");
+        // Prefer already imported sdk, fallback to dynamic import if actions not present
+        let activeSdk: any = sdk;
+        if (!activeSdk?.actions?.ready) {
+          try {
+            const imported = await import("@farcaster/miniapp-sdk");
+            activeSdk = imported.sdk;
+          } catch (err) {
+            console.warn(
+              "⚠️ Failed dynamic import of @farcaster/miniapp-sdk",
+              err
+            );
           }
-        } catch (importError) {
-          console.log(
-            "[v0] ⚠️ Could not import @farcaster/miniapp-sdk:",
-            importError
-          );
         }
-
-        // Fallback postMessage
-        window.parent?.postMessage({ type: "sdk_ready" }, "*");
-        console.log("[v0] ✅ Sent sdk_ready message to parent");
-      } catch (error) {
-        console.error("[v0] ❌ Error in Farcaster SDK initialization:", error);
+        if (!cancelled && activeSdk?.actions?.ready) {
+          await activeSdk.actions.ready();
+          // Optional log for debugging
+          console.log("✅ Called sdk.actions.ready() from root page");
+        } else {
+          console.warn("⚠️ sdk.actions.ready() unavailable in root page");
+        }
+      } catch (err) {
+        if (!cancelled)
+          console.error(
+            "❌ Error calling sdk.actions.ready() in root page:",
+            err
+          );
       }
+    })();
+    return () => {
+      cancelled = true;
     };
-
-    initializeFarcasterSDK();
-  }, [deviceInfo.isFarcaster]);
+  }, []);
 
   // Handle page refresh and wallet disconnection
   useEffect(() => {
@@ -250,6 +216,15 @@ export default function HomePage() {
       }
     }
   }, []); // Empty dependency array - runs only on mount
+
+  // Farcaster Mini App SDK: Remove splash screen when ready
+  useEffect(() => {
+    console.log("[PizzaParty] About to call sdk.actions.ready()");
+    sdk.actions.ready();
+    console.log("[PizzaParty] Called sdk.actions.ready()");
+    // Optionally, listen for context events
+    // sdk.on('context', (context) => { console.log('Mini App context:', context); });
+  }, []);
 
   const handleWalletConnect = async (walletId: string) => {
     try {

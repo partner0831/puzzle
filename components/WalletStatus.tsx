@@ -1,23 +1,23 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 
 interface WalletStatusProps {
-  isConnected: boolean;
-  walletName?: string;
-  formattedAddress?: string;
-  onConnect: () => void;
-  onDisconnect: () => void;
-  customFontStyle?: React.CSSProperties;
+  isConnected: boolean
+  walletName?: string
+  formattedAddress?: string
+  onConnect: () => void
+  onDisconnect: () => void
+  customFontStyle?: React.CSSProperties
 }
 
-export function WalletStatus({
-  isConnected,
-  walletName,
-  formattedAddress,
-  onConnect,
-  onDisconnect,
-  customFontStyle,
+export function WalletStatus({ 
+  isConnected, 
+  walletName, 
+  formattedAddress, 
+  onConnect, 
+  onDisconnect, 
+  customFontStyle 
 }: WalletStatusProps) {
   if (!isConnected) {
     return (
@@ -33,13 +33,12 @@ export function WalletStatus({
       >
         💳 Connect Wallet
       </Button>
-    );
+    )
   }
 
   return (
     <>
-      <div
-        className="w-full bg-green-100 text-green-800 border-4 border-green-600 text-base font-bold py-2 px-6 rounded-xl shadow-lg touch-manipulation flex items-center justify-center"
+      <div className="w-full bg-green-100 text-green-800 border-4 border-green-600 text-base font-bold py-2 px-6 rounded-xl shadow-lg touch-manipulation flex items-center justify-center"
         style={{
           ...customFontStyle,
           letterSpacing: "1px",
@@ -62,5 +61,5 @@ export function WalletStatus({
         🔌 Disconnect
       </Button>
     </>
-  );
+  )
 }

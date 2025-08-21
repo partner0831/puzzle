@@ -1,35 +1,24 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { useWagmiWallet } from "@/hooks/useWagmiWallet";
-import { isMobile, isInWalletBrowser } from "@/lib/wagmi-config";
-import { WALLETS } from "@/lib/wallet-config";
-import Image from "next/image";
-import { ExternalLink } from "lucide-react";
+import { useState, useEffect } from 'react'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
+import { useWagmiWallet } from '@/hooks/useWagmiWallet'
+import { isMobile, isInWalletBrowser } from '@/lib/wagmi-config'
+import { WALLETS } from '@/lib/wallet-config'
+import Image from 'next/image'
+import { ExternalLink } from 'lucide-react'
 
 interface WagmiWalletModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConnect?: (address: string) => void;
+  isOpen: boolean
+  onClose: () => void
+  onConnect?: (address: string) => void
 }
 
-export const WagmiWalletModal = ({
-  isOpen,
-  onClose,
-  onConnect,
-}: WagmiWalletModalProps) => {
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [selectedConnector, setSelectedConnector] = useState<string | null>(
-    null
-  );
-
+export const WagmiWalletModal = ({ isOpen, onClose, onConnect }: WagmiWalletModalProps) => {
+  const [isProcessing, setIsProcessing] = useState(false)
+  const [selectedConnector, setSelectedConnector] = useState<string | null>(null)
+  
   const {
     connectors,
     connectWallet,
@@ -39,69 +28,68 @@ export const WagmiWalletModal = ({
     setError,
     isMobile: isMobileDevice,
     isInWalletBrowser: inWalletBrowser,
-  } = useWagmiWallet();
+  } = useWagmiWallet()
 
   // Auto-close on successful connection
   useEffect(() => {
     if (isOpen && !isConnecting && !error) {
-      onClose();
+      onClose()
     }
-  }, [isOpen, isConnecting, error, onClose]);
+  }, [isOpen, isConnecting, error, onClose])
 
   const handleConnect = async (connectorId: string) => {
-    setIsProcessing(true);
-    setSelectedConnector(connectorId);
-    setError(null);
+    setIsProcessing(true)
+    setSelectedConnector(connectorId)
+    setError(null)
 
     try {
-      const result = await connectWallet(connectorId);
+      const result = await connectWallet(connectorId)
       if (result?.address && onConnect) {
-        onConnect(result.address);
+        onConnect(result.address)
       }
     } catch (error: any) {
-      console.error("Connection failed:", error);
-      setError(error.message);
+      console.error('Connection failed:', error)
+      setError(error.message)
     } finally {
-      setIsProcessing(false);
-      setSelectedConnector(null);
+      setIsProcessing(false)
+      setSelectedConnector(null)
     }
-  };
+  }
 
   const handleDisconnect = () => {
-    disconnectWallet();
-    onClose();
-  };
+    disconnectWallet()
+    onClose()
+  }
 
   const getConnectorDisplayName = (connectorId: string) => {
     const names: Record<string, string> = {
-      metaMask: "MetaMask",
-      coinbaseWallet: "Coinbase Wallet",
-      walletConnect: "Rainbow",
-      injected: "Trust Wallet",
-    };
-    return names[connectorId] || connectorId;
-  };
+      metaMask: 'MetaMask',
+      coinbaseWallet: 'Coinbase Wallet',
+      walletConnect: 'Rainbow',
+      injected: 'Trust Wallet',
+    }
+    return names[connectorId] || connectorId
+  }
 
   const getWalletIcon = (connectorId: string) => {
     const walletMap: Record<string, string> = {
-      metaMask: "/images/metamask-icon.svg",
-      coinbaseWallet: "/images/Coinbase-icon.png",
-      walletConnect: "/images/rainbow-wallet-icon.svg",
-      injected: "/images/trust-wallet-icon.svg",
-    };
-    return walletMap[connectorId] || "/images/metamask-icon.svg";
-  };
+      metaMask: '/images/metamask-icon.svg',
+      coinbaseWallet: '/images/Coinbase-icon.png',
+      walletConnect: '/images/rainbow-wallet-icon.svg',
+      injected: '/images/trust-wallet-icon.svg',
+    }
+    return walletMap[connectorId] || '/images/metamask-icon.svg'
+  }
 
   const getConnectorColor = (connectorId: string) => {
     const colors: Record<string, string> = {
-      metaMask: "bg-orange-500 hover:bg-orange-600",
-      coinbaseWallet: "bg-blue-600 hover:bg-blue-700",
-      walletConnect:
-        "bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600",
-      injected: "bg-blue-600 hover:bg-blue-700", // Trust Wallet uses the same blue
-    };
-    return colors[connectorId] || "bg-gray-500 hover:bg-gray-600";
-  };
+      metaMask: 'bg-orange-500 hover:bg-orange-600',
+      coinbaseWallet: 'bg-blue-600 hover:bg-blue-700',
+      walletConnect: 'bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600',
+      injected: 'bg-blue-600 hover:bg-blue-700', // Trust Wallet uses the same blue
+    }
+    return colors[connectorId] || 'bg-gray-500 hover:bg-gray-600'
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -115,43 +103,17 @@ export const WagmiWalletModal = ({
           <p className="text-center text-gray-800">
             Choose your preferred wallet to connect to Pizza Party
           </p>
-
+          
           <div className="space-y-3">
             {/* Show all 5 wallets */}
             {[
-              {
-                id: "metaMask",
-                name: "MetaMask",
-                icon: "/images/metamask-official.png",
-                color: "!bg-orange-500 hover:!bg-orange-600",
-              },
-              {
-                id: "coinbaseWallet",
-                name: "Coinbase Wallet",
-                icon: "/images/Coinbase-icon.png",
-                color: "!bg-blue-600 hover:!bg-blue-700",
-              },
-              {
-                id: "trust",
-                name: "Trust Wallet",
-                icon: "/images/trust-wallet-official.png",
-                color: "!bg-[#000F7E] hover:!bg-[#000F7E]/90",
-              },
-              {
-                id: "rainbow",
-                name: "Rainbow",
-                icon: "/images/rainbow-wallet-official.png",
-                color:
-                  "!bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600",
-              },
-              {
-                id: "phantom",
-                name: "Phantom",
-                icon: "/images/phantom-wallet-official.png",
-                color: "!bg-purple-600 hover:!bg-purple-700",
-              },
+              { id: 'metaMask', name: 'MetaMask', icon: '/images/metamask-official.png', color: '!bg-orange-500 hover:!bg-orange-600' },
+              { id: 'coinbaseWallet', name: 'Coinbase Wallet', icon: '/images/Coinbase-icon.png', color: '!bg-blue-600 hover:!bg-blue-700' },
+              { id: 'trust', name: 'Trust Wallet', icon: '/images/trust-wallet-official.png', color: '!bg-[#000F7E] hover:!bg-[#000F7E]/90' },
+              { id: 'rainbow', name: 'Rainbow', icon: '/images/rainbow-wallet-official.png', color: '!bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600' },
+              { id: 'phantom', name: 'Phantom', icon: '/images/phantom-wallet-official.png', color: '!bg-purple-600 hover:!bg-purple-700' }
             ].map((wallet) => (
-              <Button
+                <Button
                 key={wallet.id}
                 onClick={() => handleConnect(wallet.id)}
                 disabled={isProcessing && selectedConnector === wallet.id}
@@ -167,24 +129,21 @@ export const WagmiWalletModal = ({
                     onError={(e) => {
                       // Fallback to emoji if image fails to load
                       const target = e.target as HTMLImageElement;
-                      target.style.display = "none";
-                      const emojiSpan =
-                        target.nextElementSibling as HTMLElement;
+                      target.style.display = 'none';
+                      const emojiSpan = target.nextElementSibling as HTMLElement;
                       if (emojiSpan) {
-                        emojiSpan.style.display = "block";
+                        emojiSpan.style.display = 'block';
                       }
                     }}
                   />
-                  <span className="text-xl" style={{ display: "none" }}>
-                    {wallet.id === "metaMask"
-                      ? "🦊"
-                      : wallet.id === "coinbaseWallet"
-                      ? "🪙"
-                      : wallet.id === "trust"
-                      ? "🛡️"
-                      : wallet.id === "rainbow"
-                      ? "🌈"
-                      : "👻"}
+                  <span 
+                    className="text-xl"
+                    style={{ display: 'none' }}
+                  >
+                    {wallet.id === 'metaMask' ? '🦊' : 
+                     wallet.id === 'coinbaseWallet' ? '🪙' : 
+                     wallet.id === 'trust' ? '🛡️' :
+                     wallet.id === 'rainbow' ? '🌈' : '👻'}
                   </span>
                   <span className="text-lg font-bold">{wallet.name}</span>
                 </div>
@@ -195,8 +154,8 @@ export const WagmiWalletModal = ({
                     <ExternalLink className="h-5 w-5 text-white" />
                   )}
                 </div>
-              </Button>
-            ))}
+                </Button>
+              ))}
           </div>
 
           {error && (
@@ -220,5 +179,5 @@ export const WagmiWalletModal = ({
         </div>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+} 
