@@ -12,13 +12,25 @@ export const metadata: Metadata = {
   title: "Pizza Party - The Tastiest Way to Chase Jackpots",
   description:
     "Get a slice of the action with Pizza Party, a sizzling decentralized jackpot game on Base! Toss in just $1 VMF for a chance to dough-minate daily and weekly prizes. With crust-worthy on-chain randomness, instant payouts, and cheesy topping rewards, it's a fair and fun fest for the whole pizza posse.",
-  generator: "VMF Coin",
+  generator: "Pizza Party",
+  icons: {
+    icon: "/images/pizza-party-title-transparent.png",
+    apple: "/images/pizza-party-title-transparent.png",
+  },
   openGraph: {
     title: "Join the Pizza Party Fun!",
     description:
       "Get a slice of the action with Pizza Party, a sizzling decentralized jackpot game on Base! Toss in just $1 VMF for a chance to dough-minate daily and weekly prizes. With crust-worthy on-chain randomness, instant payouts, and cheesy topping rewards, it's a fair and fun fest for the whole pizza posse.",
     images: ["https://u.cubeupload.com/vmfcoin/PizzaPartyHomepageLa.png"],
-    url: "https://v0-farcaster-preview-issue.vercel.app",
+    url: "https://puzzle-ochre-one.vercel.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pizza Party - Daily Games, Weekly Jackpots",
+    description:
+      "Play daily Pizza Party games to earn toppings and win weekly VMF jackpots!",
+    images: ["https://u.cubeupload.com/vmfcoin/PizzaPartyHomepageLa.png"],
+    url: "https://puzzle-ochre-one.vercel.app",
   },
   other: {
     "fc:frame": "vNext",
