@@ -34,7 +34,7 @@ const connectors = connectorsForWallets([
 export const config = createConfig({
   chains: [pizzaPartyChain, base],
   connectors,
-  ssr: true,
+  ssr: false, // Disable SSR to prevent QueryClient issues
   transports: {
     [pizzaPartyChain.id]: http('https://mainnet.base.org'),
     [base.id]: http('https://mainnet.base.org'),

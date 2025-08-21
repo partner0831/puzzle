@@ -3,3 +3,10 @@
 
 export const CONTRACT_ADDRESS = '';
 export const CONTRACT_ABI = [];
+
+export const CONTRACT_ADDRESSES = {
+  PIZZA_PARTY: '',
+  VMF_TOKEN: '',
+  JACKPOT: '',
+  LEADERBOARD: ''
+};

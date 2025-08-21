@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Pizza Party - The Tastiest Way to Chase Jackpots",
   description:
     "Get a slice of the action with Pizza Party, a sizzling decentralized jackpot game on Base! Toss in just $1 VMF for a chance to dough-minate daily and weekly prizes. With crust-worthy on-chain randomness, instant payouts, and cheesy topping rewards, it's a fair and fun fest for the whole pizza posse.",
-  generator: "v0.app",
+  generator: "VMF Coin",
   openGraph: {
     title: "Join the Pizza Party Fun!",
     description:

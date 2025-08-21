@@ -3,7 +3,18 @@
 
 export function calculateCommunityJackpot() { return 0 }
 export function formatJackpotAmount() { return '' }
-export function getWeeklyJackpotInfo() { return {} }
+export function getWeeklyJackpotInfo() { 
+  return {
+    totalToppings: 0,
+    totalPlayers: 0,
+    timeUntilDraw: {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    },
+  }
+}
 export function getDailyPlayerCount() { return 0 }
 export function getWeeklyPlayerCount() { return 0 }
 export function getToppingsAvailableToClaim() { return 0 }
@@ -12,7 +23,14 @@ export function selectWeeklyJackpotWinners() { return [] }
 export function payWeeklyJackpotWinners() { return [] }
 export function getUserClaimableToppings() { return 0 }
 export function canClaimToppings() { return false }
-export function getTimeUntilClaimingWindow() { return 0 }
+export function getTimeUntilClaimingWindow() { 
+  return {
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  }
+}
 export function isWeeklyJackpotTime() { return false }
 export function earnDailyPlayToppings() { return 0 }
 export function earnVMFHoldingsToppings() { return 0 }

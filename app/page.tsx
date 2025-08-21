@@ -485,7 +485,7 @@ export default function HomePage() {
             {/* Play Button - Mobile optimized */}
             <Link href="/game">
               <Button
-                className="w-full bg-red-700 hover:bg-red-800 text-white text-lg font-bold py-3 px-6 rounded-xl border-4 border-red-900 shadow-lg transform hover:scale-105 transition-all touch-manipulation"
+                className="w-full !bg-red-700 hover:!bg-red-800 text-white text-lg font-bold py-3 px-6 rounded-xl border-4 border-red-900 shadow-lg transform hover:scale-105 transition-all touch-manipulation"
                 style={{
                   ...customFontStyle,
                   letterSpacing: "1px",
@@ -502,7 +502,7 @@ export default function HomePage() {
             <div className="flex flex-col" style={{ gap: "15px" }}>
               <Link href="/jackpot">
                 <Button
-                  className="w-full bg-red-700 hover:bg-red-800 text-white text-lg font-bold py-3 px-6 rounded-xl border-4 border-red-900 shadow-lg transform hover:scale-105 transition-all touch-manipulation"
+                  className="w-full !bg-red-700 hover:!bg-red-800 text-white text-lg font-bold py-3 px-6 rounded-xl border-4 border-red-900 shadow-lg transform hover:scale-105 transition-all touch-manipulation"
                   style={{
                     ...customFontStyle,
                     letterSpacing: "1px",
@@ -526,7 +526,7 @@ export default function HomePage() {
 
               <Link href="/leaderboard">
                 <Button
-                  className="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-bold py-3 px-6 rounded-xl border-4 border-green-800 shadow-lg transform hover:scale-105 transition-all touch-manipulation"
+                  className="w-full !bg-green-600 hover:!bg-green-700 text-white text-lg font-bold py-3 px-6 rounded-xl border-4 border-green-800 shadow-lg transform hover:scale-105 transition-all touch-manipulation"
                   style={{
                     ...customFontStyle,
                     letterSpacing: "1px",
@@ -641,17 +641,17 @@ export default function HomePage() {
                 const getWalletStyle = (walletName: string) => {
                   switch (walletName.toLowerCase()) {
                     case "metamask":
-                      return "bg-orange-500 hover:bg-orange-600 text-white border-orange-600";
+                      return "!bg-orange-500 hover:!bg-orange-600 text-white";
                     case "coinbase wallet":
-                      return "bg-blue-600 hover:bg-blue-700 text-white border-blue-700";
+                      return "!bg-blue-600 hover:!bg-blue-700 text-white";
                     case "trust wallet":
-                      return "bg-blue-600 hover:bg-blue-700 text-white border-blue-700";
+                      return "!bg-[#000F7E] hover:!bg-[#000F7E]/90 text-white";
                     case "rainbow":
-                      return "bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white border-purple-600";
+                      return "!bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white";
                     case "phantom":
-                      return "bg-purple-600 hover:bg-purple-700 text-white border-purple-700";
+                      return "!bg-purple-600 hover:!bg-purple-700 text-white";
                     default:
-                      return "bg-gray-600 hover:bg-gray-700 text-white border-gray-700";
+                      return "!bg-gray-600 hover:!bg-gray-700 text-white";
                   }
                 };
 
@@ -660,19 +660,19 @@ export default function HomePage() {
                     key={wallet.id}
                     onClick={() => handleWalletConnect(wallet.id)}
                     disabled={isConnecting === wallet.id}
-                    className={`w-full font-bold py-6 px-4 rounded-xl border-2 shadow-lg transform hover:scale-105 transition-all flex items-center justify-between text-lg ${getWalletStyle(
+                    className={`w-full font-bold py-6 px-8 rounded-xl shadow-lg transform hover:scale-105 transition-all flex items-center justify-between text-lg ${getWalletStyle(
                       wallet.name
                     )}`}
                     style={customFontStyle}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-4">
                       {wallet.iconImage ? (
                         <Image
                           src={wallet.iconImage}
                           alt={wallet.name}
-                          width={24}
-                          height={24}
-                          className="w-6 h-6"
+                          width={32}
+                          height={32}
+                          className="w-8 h-8"
                           onError={(e) => {
                             // Fallback to emoji if image fails to load
                             const target = e.target as HTMLImageElement;
@@ -686,20 +686,20 @@ export default function HomePage() {
                         />
                       ) : null}
                       <span
-                        className={`text-lg ${
+                        className={`text-xl ${
                           wallet.iconImage ? "hidden" : "block"
                         }`}
                         style={{ display: wallet.iconImage ? "none" : "block" }}
                       >
                         {wallet.icon}
                       </span>
-                      <span>{wallet.name}</span>
+                      <span className="text-lg font-bold">{wallet.name}</span>
                     </div>
                     <div className="flex-shrink-0">
                       {isConnecting === wallet.id ? (
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
                       ) : (
-                        <ExternalLink className="h-4 w-4 text-white" />
+                        <ExternalLink className="h-5 w-5 text-white" />
                       )}
                     </div>
                   </Button>
